@@ -19,6 +19,8 @@ const setupInput = function (conn) {
       conn.write("Move: down");
     } else if (data === 'd') {
       conn.write("Move: right");
+    } else if (data === 'b') {
+      conn.write("Say: uwuwuwuwu");
     }
   };
 
