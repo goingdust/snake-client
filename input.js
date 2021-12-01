@@ -1,21 +1,31 @@
-const setupInput = function () {
+let connection;
+
+const setupInput = function (conn) {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
   stdin.resume();
-  stdin.on("data", handleUserInput);
 
+  const handleUserInput = function (data) {
+    if (data === '\u0003') {
+      console.log("thanks for playing, bye bye! \n");
+      process.exit();
+    } else if (data === 'w') {
+      conn.write("Move: up");
+    } else if (data === 'a') {
+      conn.write("Move: left");
+    } else if (data === 's') {
+      conn.write("Move: down");
+    } else if (data === 'd') {
+      conn.write("Move: right");
+    }
+  };
+
+  stdin.on("data", handleUserInput);
   return stdin;
 };
 
-const handleUserInput = function (data) {
-  if (data === '\u0003') {
-    console.log("thanks for playing, bye bye! \n");
-    process.exit();
-  }
-};
-
 module.exports = {
-  setupInput,
-  handleUserInput
+  setupInput
 };
