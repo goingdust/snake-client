@@ -13,6 +13,9 @@ const connect = function () {
   conn.on("connect", () => {
     console.log("you in the game now \n");
     conn.write("Name: dtl");
+    // setInterval(() => {
+    //   conn.write("Move: up");
+    // }, 50);
   });
 
   conn.on("data", (data) => {
