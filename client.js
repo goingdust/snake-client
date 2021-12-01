@@ -12,6 +12,7 @@ const connect = function () {
 
   conn.on("connect", () => {
     console.log("you in the game now \n");
+    conn.write("Name: dtl");
   });
 
   conn.on("data", (data) => {
